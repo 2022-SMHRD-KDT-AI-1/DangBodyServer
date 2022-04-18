@@ -31,6 +31,8 @@ public class WalkService extends HttpServlet {
 		System.out.println("날짜 : "+walkDate);
 		System.out.println("시간 : "+walkTime);
 		System.out.println("거리 : "+walkDistance);
+		System.out.println("아이디 : "+userId);
+		
 		
 		
 		WalkDAO dao = new WalkDAO();

@@ -24,6 +24,7 @@ public class showRecord extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		
 		String userId = req.getParameter("user_id");
+		System.out.println(userId);
 		
 		Gson gson = new Gson();
 		//WalkDTO dto = new WalkDTO();

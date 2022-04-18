@@ -22,9 +22,9 @@ public class UserDAO {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			// 2. Connection 객체 생성
-			String url = "jdbc:oracle:thin:@220.71.97.178:1521:xe";
-			String dbid = "hr";
-			String dbpw = "hr";
+			String url = "jdbc:oracle:thin:@project-db-stu.ddns.net:1524:xe";
+			String dbid = "ai1_pjs_oracle";
+			String dbpw = "smhrd123";
 			conn = DriverManager.getConnection(url, dbid, dbpw);
 		} catch (Exception e) {
 			e.printStackTrace();

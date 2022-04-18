@@ -20,9 +20,9 @@ public class WalkDAO {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 
 				// 2. Connection 객체 생성
-				String url = "jdbc:oracle:thin:@220.71.97.178:1521:xe";
-				String dbid = "hr";
-				String dbpw = "hr";
+				String url = "jdbc:oracle:thin:@project-db-stu.ddns.net:1524:xe";
+				String dbid = "ai1_pjs_oracle";
+				String dbpw = "smhrd123";
 				conn = DriverManager.getConnection(url, dbid, dbpw);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -52,7 +52,7 @@ public class WalkDAO {
 		public int recordWalk(WalkDTO dto) {
 			DBconn();
 			
-			String sql = "insert into t_walk(walk_time, walk_distance, walk_date, user_id, pet_seq) values(?,?,?,?,?)";
+			String sql = "insert into t_walk(walk_time, walk_distance, walk_date, user_id, pet_seq) values(?,?,?,?,(select pet_seq from t_pet where user_id=?))";
 			
 			try {
 				psmt = conn.prepareStatement(sql);
@@ -60,7 +60,8 @@ public class WalkDAO {
 				psmt.setString(2, dto.getWalk_distance());
 				psmt.setString(3, dto.getWalk_date());
 				psmt.setString(4, dto.getUser_id());
-				psmt.setInt(5, dto.getPet_seq());
+				psmt.setString(5, dto.getUser_id());
+				
 				
 				cnt = psmt.executeUpdate();
 			} catch (SQLException e) {
