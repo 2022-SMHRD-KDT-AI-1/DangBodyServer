@@ -22,6 +22,18 @@
   	<description></description>
   	<servlet-class>controller.JoinPetService</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>WalkService</servlet-name>
+  	<display-name>WalkService</display-name>
+  	<description></description>
+  	<servlet-class>controller.WalkService</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>showRecord</servlet-name>
+  	<display-name>showRecord</display-name>
+  	<description></description>
+  	<servlet-class>controller.showRecord</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>LoginService</servlet-name>
   	<url-pattern>/LoginService</url-pattern>
@@ -33,5 +45,13 @@
   <servlet-mapping>
   	<servlet-name>JoinPetService</servlet-name>
   	<url-pattern>/JoinPetService</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>WalkService</servlet-name>
+  	<url-pattern>/WalkService</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>showRecord</servlet-name>
+  	<url-pattern>/showRecord</url-pattern>
   </servlet-mapping>
 </web-app>
