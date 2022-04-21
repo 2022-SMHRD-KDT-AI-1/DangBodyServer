@@ -24,7 +24,7 @@ public class showRecord extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		
 		String userId = req.getParameter("user_id");
-		System.out.println(userId);
+		//System.out.println(userId);
 		
 		Gson gson = new Gson();
 		//WalkDTO dto = new WalkDTO();
@@ -33,8 +33,11 @@ public class showRecord extends HttpServlet {
 		ArrayList<WalkDTO> list = new ArrayList<WalkDTO>();
 		list = dao.showRecord(userId);
 		
-		String jsonArr = gson.toJson(list);
+		
+		
+		String jsonArr = gson.toJson(list); 
 		out.print(jsonArr);
+		
 		
 	}
 }

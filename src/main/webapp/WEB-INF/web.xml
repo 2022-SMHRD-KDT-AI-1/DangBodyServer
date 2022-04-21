@@ -34,6 +34,36 @@
   	<description></description>
   	<servlet-class>controller.showRecord</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>RecordNoticeService</servlet-name>
+  	<display-name>RecordNoticeService</display-name>
+  	<description></description>
+  	<servlet-class>controller.RecordNoticeService</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>showNoticeService</servlet-name>
+  	<display-name>showNoticeService</display-name>
+  	<description></description>
+  	<servlet-class>controller.showNoticeService</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>FindPetName</servlet-name>
+  	<display-name>FindPetName</display-name>
+  	<description></description>
+  	<servlet-class>controller.FindPetName</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>CommunityService</servlet-name>
+  	<display-name>CommunityService</display-name>
+  	<description></description>
+  	<servlet-class>controller.CommunityService</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>CommunityDAO</servlet-name>
+  	<display-name>CommunityDAO</display-name>
+  	<description></description>
+  	<servlet-class>model.CommunityDAO</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>LoginService</servlet-name>
   	<url-pattern>/LoginService</url-pattern>
@@ -53,5 +83,25 @@
   <servlet-mapping>
   	<servlet-name>showRecord</servlet-name>
   	<url-pattern>/showRecord</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>RecordNoticeService</servlet-name>
+  	<url-pattern>/RecordNoticeService</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>showNoticeService</servlet-name>
+  	<url-pattern>/showNoticeService</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>FindPetName</servlet-name>
+  	<url-pattern>/FindPetName</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CommunityService</servlet-name>
+  	<url-pattern>/CommunityService</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CommunityDAO</servlet-name>
+  	<url-pattern>/CommunityDAO</url-pattern>
   </servlet-mapping>
 </web-app>

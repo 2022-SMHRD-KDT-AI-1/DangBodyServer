@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class WalkDAO {
+public class NoticeDAO {
 	// 전역변수로 선언
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -47,53 +47,47 @@ public class WalkDAO {
 			}
 
 		}
-
 		
-		public int recordWalk(WalkDTO dto) {
+		public int insertNotice(NoticeDTO dto) {
+			
 			DBconn();
 			
-			String sql = "insert into t_walk(walk_time, walk_distance, walk_date, user_id, pet_seq) values(?,?,?,?,(select pet_seq from t_pet where user_id=?))";
+			String sql = "insert into t_notice(notice_title, notice_st_dt, notice_check, user_id) values(?, TO_DATE(?,'yyyy-mm-dd'), 'N', ?)";
 			
 			try {
 				psmt = conn.prepareStatement(sql);
-				psmt.setString(1, dto.getWalk_time());
-				psmt.setString(2, dto.getWalk_distance());
-				psmt.setString(3, dto.getWalk_date());
-				psmt.setString(4, dto.getUser_id());
-				psmt.setString(5, dto.getUser_id());
-				
+				psmt.setString(1, dto.getNotice_title());
+				psmt.setString(2, dto.getDate());
+				psmt.setString(3, dto.getUser_id());
 				
 				cnt = psmt.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}finally {
-				DBclose();
+				DBclose();				
 			}
 			
-			return cnt;
-			
+			return cnt;			
 		}
 		
-		public ArrayList<WalkDTO> showRecord(String userId){
-			ArrayList<WalkDTO> info = new ArrayList<WalkDTO>();
+		public ArrayList<NoticeDTO> showNotice(String user_id){
+			ArrayList<NoticeDTO> list = new ArrayList<NoticeDTO>();
 			
-			DBconn();
-			
-			String sql = "select walk_time, walk_distance, walk_date from t_walk where user_id = ? order by walk_date desc";
-			
+			String sql = "select * from t_notice where user_id=?";
 			try {
 				psmt = conn.prepareStatement(sql);
-				psmt.setString(1, userId);
+				psmt.setString(1, user_id);
 				
 				rs = psmt.executeQuery();
 				
 				while(rs.next()) {
 										
-					String time = rs.getString("walk_time");
-					String dis = rs.getString("walk_distance");
-					String date = rs.getString("walk_date");
+					String title = rs.getString("notice_title");
+					String n_date = rs.getString("notice_st_dt");
 					
-					info.add(new WalkDTO(time, dis, date));
+					
+					list.add(new NoticeDTO(user_id,title,n_date));
+					
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -101,6 +95,6 @@ public class WalkDAO {
 				DBclose();
 			}
 			
-			return info;
+			return list;			
 		}
 }

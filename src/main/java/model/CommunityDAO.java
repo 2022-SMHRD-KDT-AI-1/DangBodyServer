@@ -7,8 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class PetDAO {
-
+public class CommunityDAO {
 	// 전역변수로 선언
 	Connection conn = null;
 	PreparedStatement psmt = null;
@@ -48,21 +47,18 @@ public class PetDAO {
 		}
 
 	}
-
 	
-	public int joinPet(PetDTO dto) {
+
+	public int insertCommunity(String id, String content, String path) {
 		DBconn();
 		
-		String sql = "insert into t_pet(pet_name, pet_birthdate, pet_gender, pet_neutral, pet_weight, pet_date, user_id) values(?,TO_DATE(?,'yyyy-mm-dd'),?,?,?,TO_DATE(?,'yyyy-mm-dd'),?)";
+		String sql = "insert into t_community(article_content, article_file, article_date, likes, user_id) values(?, ?, sysdate, 0, ?)";
+		
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, dto.getPet_name());
-			psmt.setString(2, dto.getPet_birthdate());
-			psmt.setString(3, dto.getPet_gender());
-			psmt.setString(4, dto.getPet_neutral());
-			psmt.setInt(5, dto.getPet_weight());
-			psmt.setString(6, dto.getPet_date());
-			psmt.setString(7, dto.getUser_id());
+			psmt.setString(1, content);
+			psmt.setString(2, path);
+			psmt.setString(3, id);
 			
 			cnt = psmt.executeUpdate();
 		} catch (SQLException e) {
@@ -74,31 +70,52 @@ public class PetDAO {
 		
 	}
 	
-	public ArrayList<String> findPet(String user_id) {
-		ArrayList<String> names = new ArrayList<String>();
+	public ArrayList<CommunityDTO> showCommunity(){
+		ArrayList<CommunityDTO> list = new ArrayList<CommunityDTO>();
 		
-		DBconn();
-		String sql = "select pet_name from t_pet where user_id = ?";
+		String sql = "select * from t_community";
+		
 		
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, user_id);
-			
 			rs = psmt.executeQuery();
 			
 			while(rs.next()) {
-				String name = rs.getString(1);
+				int seq = rs.getInt(1);
+				String content = rs.getString(2);
+				String file = rs.getString(3);
+				String date = rs.getString(4);
+				int likes = rs.getInt(5);
+				String userId = rs.getString(6);
 				
-				names.add(name);
+				
+				CommunityDTO dto = new CommunityDTO(seq, content, file, date, likes, userId);
+				list.add(dto);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBclose();
+		}
+		return list;
+	}
+	
+	public int updateLikes(int seq) {
+		DBconn();
+		
+		String sql = "update t_community set likes = likes+1 where article_seq = ?";
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, seq);
+			
+			cnt = psmt.executeUpdate();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			DBclose();
 		}
 		
-		return names; 
+		return cnt;
 	}
-
 }
