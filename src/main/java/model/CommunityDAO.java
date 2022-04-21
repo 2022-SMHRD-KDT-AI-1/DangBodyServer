@@ -109,7 +109,6 @@ public class CommunityDAO {
 			psmt = conn.prepareStatement(sql);		
 			psmt.setInt(1, seq);
 			
-			
 			cnt = psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
