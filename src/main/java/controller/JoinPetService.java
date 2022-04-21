@@ -49,6 +49,7 @@ public class JoinPetService extends HttpServlet {
 		
 		int rs = dao.joinPet(dto);
 		
+		
 		if(rs!=0) {
 			out.print(1);
 		}else {
