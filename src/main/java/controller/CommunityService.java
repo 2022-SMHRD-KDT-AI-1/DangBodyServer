@@ -48,6 +48,7 @@ public class CommunityService extends HttpServlet {
 			e.printStackTrace();
 		}
 		System.out.println("DONE");
+		System.out.println("DONE");
 		
 		CommunityDAO dao = new CommunityDAO();
 		

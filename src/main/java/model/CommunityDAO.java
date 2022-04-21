@@ -103,7 +103,7 @@ public class CommunityDAO {
 	public int updateLikes(int seq) {
 		DBconn();
 		
-		String sql = "update t_community set likes = likes+1 where article_seq = ?";
+		String sql = "update t_community set likes = likes+1 where article_seq = ?"; 
 
 		try {
 			psmt = conn.prepareStatement(sql);
