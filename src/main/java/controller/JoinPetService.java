@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.PetDTO;
 import model.PetDAO;
+import model.PetDTO;
 
 public class JoinPetService extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -19,7 +19,7 @@ public class JoinPetService extends HttpServlet {
 
 		System.out.println("[펫 등록!]");
 		
-		response.setContentType("text/plain; charset=utf-8");
+		response.setContentType("t		ext/plain; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
 		String petName = request.getParameter("pet_name");
