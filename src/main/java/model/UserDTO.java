@@ -22,6 +22,11 @@ public class UserDTO {
 		this.user_id = user_id;
 		this.user_pw = user_pw;
 	}
+	
+	public UserDTO(String user_nick) {
+		super();
+		this.user_nick = user_nick;
+	}
 	// 회원가입시 필요한 생성자
 	
 	public UserDTO(String user_id, String user_pw, String user_name, String user_nick, String user_phone,

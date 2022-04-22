@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import controller.ComVO;
+
 public class CommunityDAO {
 	// 전역변수로 선언
 	Connection conn = null;
@@ -70,10 +72,11 @@ public class CommunityDAO {
 		
 	}
 	
-	public ArrayList<CommunityDTO> showCommunity(){
-		ArrayList<CommunityDTO> list = new ArrayList<CommunityDTO>();
+	public ArrayList<ComVO> showCommunity(){
+		ArrayList<ComVO> list = new ArrayList<ComVO>();
 		
-		String sql = "select * from t_community";
+		DBconn();
+		String sql = "select c.article_seq, c.article_content, c.article_file, c.article_date, c.likes, c.user_id, u.user_nick from t_community c, t_user u where c.user_id = u.user_id order by article_seq desc";
 		
 		
 		try {
@@ -87,10 +90,12 @@ public class CommunityDAO {
 				String date = rs.getString(4);
 				int likes = rs.getInt(5);
 				String userId = rs.getString(6);
+				String userNick=rs.getString(7);
 				
 				
-				CommunityDTO dto = new CommunityDTO(seq, content, file, date, likes, userId);
-				list.add(dto);
+				
+				ComVO cvo = new ComVO(new CommunityDTO(seq, content, file, date, likes, userId), new UserDTO(userNick));
+				list.add(cvo);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

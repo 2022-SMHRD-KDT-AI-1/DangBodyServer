@@ -64,6 +64,12 @@
   	<description></description>
   	<servlet-class>model.CommunityDAO</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>showCommunityService</servlet-name>
+  	<display-name>showCommunityService</display-name>
+  	<description></description>
+  	<servlet-class>controller.showCommunityService</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>LoginService</servlet-name>
   	<url-pattern>/LoginService</url-pattern>
@@ -103,5 +109,9 @@
   <servlet-mapping>
   	<servlet-name>CommunityDAO</servlet-name>
   	<url-pattern>/CommunityDAO</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>showCommunityService</servlet-name>
+  	<url-pattern>/showCommunityService</url-pattern>
   </servlet-mapping>
 </web-app>
