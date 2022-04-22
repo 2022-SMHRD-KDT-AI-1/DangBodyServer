@@ -17,11 +17,16 @@ import model.CommunityDAO;
 
 public class CommunityService extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String FPATH = "/images/";
-//   private static final String SPATH = "/storage/";
-	private static final String IMGNAME = ".jpg"; 
+	
+	
+	//리눅스 서버저장경로
 	private static final String linux_path = "/home/ubuntu/project/dangbody/images/";
 	
+	//데이터베이스 이미지저장경로
+	private static final String aws_path = "http://3.128.27.19:8080/";
+	private static final String saveDir_path = "images/";
+	private static final String IMGNAME = ".jpg"; 
+			
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -54,7 +59,7 @@ public class CommunityService extends HttpServlet {
 		
 		CommunityDAO dao = new CommunityDAO();
 		
-		int rs = dao.insertCommunity(userId, content, target_path);
+		int rs = dao.insertCommunity(userId, content, aws_path+saveDir_path+userId);
 		
 		if(rs > 0 ) {
 			out.print("true");
