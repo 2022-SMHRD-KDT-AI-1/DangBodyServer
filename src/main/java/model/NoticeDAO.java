@@ -72,8 +72,8 @@ public class NoticeDAO {
 		
 		public ArrayList<NoticeDTO> showNotice(String user_id){
 			ArrayList<NoticeDTO> list = new ArrayList<NoticeDTO>();
-			
-			String sql = "select * from t_notice where user_id=?";
+			DBconn();
+			String sql = "select * from t_notice where user_id=? order by notice_seq desc";
 			try {
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1, user_id);

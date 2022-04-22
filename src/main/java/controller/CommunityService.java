@@ -19,7 +19,7 @@ public class CommunityService extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String FPATH = "/images/";
 //   private static final String SPATH = "/storage/";
-	private static final String IMGNAME = ".jpg";
+	private static final String IMGNAME = ".jpg"; 
 	private static final String linux_path = "/home/ubuntu/project/dangbody/images/";
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response)

@@ -31,7 +31,7 @@ public class showNoticeService extends HttpServlet {
 		
 		ArrayList<NoticeDTO> list = new ArrayList<NoticeDTO>();
 		list = dao.showNotice(userId);
-		
+		System.out.println(list);
 		
 		
 		String jsonArr = gson.toJson(list); 
