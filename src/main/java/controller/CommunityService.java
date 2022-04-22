@@ -30,7 +30,7 @@ public class CommunityService extends HttpServlet {
 		String userId = request.getParameter("user_id");
 		String content = request.getParameter("content");
 		String base64 = request.getParameter("image");
-		String target_path=""; 
+		String target_path="";  
 		
 		byte decode[] = Base64.decodeBase64(base64);
 		FileOutputStream fos;
