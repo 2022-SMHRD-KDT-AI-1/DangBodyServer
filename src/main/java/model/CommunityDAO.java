@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import controller.ComVO;
+import model.ComDTO;
 
 public class CommunityDAO {
 	// 전역변수로 선언
@@ -72,11 +72,11 @@ public class CommunityDAO {
 		
 	}
 	
-	public ArrayList<ComVO> showCommunity(){
-		ArrayList<ComVO> list = new ArrayList<ComVO>();
+	public ArrayList<ComDTO> showCommunity(){
+		ArrayList<ComDTO> list = new ArrayList<ComDTO>();
 		
 		DBconn();
-		String sql = "select c.article_seq, c.article_content, c.article_file, c.article_date, c.likes, c.user_id, u.user_nick from t_community c, t_user u where c.user_id = u.user_id order by article_seq desc";
+		String sql = "select c.article_seq, c.article_content, c.article_file, c.article_date, c.likes, u.user_nick from t_community c, t_user u where c.user_id = u.user_id order by article_seq desc";
 		
 		
 		try {
@@ -89,12 +89,11 @@ public class CommunityDAO {
 				String file = rs.getString(3);
 				String date = rs.getString(4);
 				int likes = rs.getInt(5);
-				String userId = rs.getString(6);
-				String userNick=rs.getString(7);
+				String userNick=rs.getString(6);
 				
 				
 				
-				ComVO cvo = new ComVO(new CommunityDTO(seq, content, file, date, likes, userId), new UserDTO(userNick));
+				ComDTO cvo = new ComDTO(seq, content, file, date, likes, userNick);
 				list.add(cvo);
 			}
 		} catch (SQLException e) {

@@ -20,7 +20,8 @@ public class CommunityService extends HttpServlet {
 	private static final String FPATH = "/images/";
 //   private static final String SPATH = "/storage/";
 	private static final String IMGNAME = ".jpg";
-
+	private static final String linux_path = "/home/ubuntu/project/dangbody/images/";
+	
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -35,7 +36,8 @@ public class CommunityService extends HttpServlet {
 		byte decode[] = Base64.decodeBase64(base64);
 		FileOutputStream fos;
 		try {
-			target_path = getServletContext().getRealPath("images/") + userId+IMGNAME;
+//			target_path = getServletContext().getRealPath("images/") + userId+IMGNAME;
+			target_path = linux_path +  userId+IMGNAME;
 
 			System.out.println(target_path);
 			File target = new File(target_path);

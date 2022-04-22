@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import model.ComDTO;
 import model.CommunityDAO;
 //import model.CommunityDTO;
 
@@ -28,7 +29,7 @@ public class showCommunityService extends HttpServlet {
 		Gson gson = new Gson();
 		CommunityDAO dao = new CommunityDAO();
 		
-		ArrayList<ComVO> list = new ArrayList<ComVO>();
+		ArrayList<ComDTO> list = new ArrayList<ComDTO>();
 		list = dao.showCommunity();
 		
 		
