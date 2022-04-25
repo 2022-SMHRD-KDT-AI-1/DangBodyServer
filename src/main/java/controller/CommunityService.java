@@ -60,7 +60,7 @@ public class CommunityService extends HttpServlet {
 		
 		CommunityDAO dao = new CommunityDAO();
 		
-		int rs = dao.insertCommunity(userId, content, aws_path+saveDir_path+userId+IMGNAME);
+		int rs = dao.insertCommunity(userId, content, aws_path+saveDir_path+userId+uuid+IMGNAME);
 		
 		if(rs > 0 ) {
 			out.print("true");

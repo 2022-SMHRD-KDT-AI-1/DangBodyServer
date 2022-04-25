@@ -15,7 +15,7 @@ public class UserDAO {
 	PreparedStatement psmt = null;
 	ResultSet rs = null;
 	int cnt = 0;
-	
+		
 	// DB연결 메소드
 	public void DBconn() {
 		try {
