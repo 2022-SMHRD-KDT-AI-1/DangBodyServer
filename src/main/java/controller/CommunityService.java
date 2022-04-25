@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -37,12 +38,13 @@ public class CommunityService extends HttpServlet {
 		String content = request.getParameter("content");
 		String base64 = request.getParameter("image");
 		String target_path="";  
+		String uuid = UUID.randomUUID().toString();
 		
 		byte decode[] = Base64.decodeBase64(base64);
 		FileOutputStream fos;
 		try {
 //			target_path = getServletContext().getRealPath("images/") + userId+IMGNAME;
-			target_path = linux_path +  userId+IMGNAME;
+			target_path = linux_path +userId+uuid+IMGNAME;
 
 			System.out.println(target_path);
 			File target = new File(target_path);
@@ -54,7 +56,6 @@ public class CommunityService extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("DONE");
 		System.out.println("DONE");
 		
 		CommunityDAO dao = new CommunityDAO();
