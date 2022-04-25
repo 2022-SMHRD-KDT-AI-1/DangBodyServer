@@ -38,13 +38,13 @@ public class CommunityService extends HttpServlet {
 		String content = request.getParameter("content");
 		String base64 = request.getParameter("image");
 		String target_path="";  
-		//String uuid = UUID.randomUUID().toString();
+		String uuid = UUID.randomUUID().toString();
 		
 		byte decode[] = Base64.decodeBase64(base64);
 		FileOutputStream fos;
 		try {
 //			target_path = getServletContext().getRealPath("images/") + userId+IMGNAME;
-			target_path = linux_path +userId+IMGNAME;
+			target_path = linux_path+userId+uuid+IMGNAME;
 
 			System.out.println(target_path);
 			File target = new File(target_path);
@@ -60,7 +60,7 @@ public class CommunityService extends HttpServlet {
 		
 		CommunityDAO dao = new CommunityDAO();
 		
-		int rs = dao.insertCommunity(userId, content, aws_path+saveDir_path+userId+IMGNAME);
+		int rs = dao.insertCommunity(userId, content, aws_path+saveDir_path+userId+uuid+IMGNAME);
 		
 		if(rs > 0 ) {
 			out.print("true");
